@@ -6,6 +6,8 @@ import os
 load_dotenv()
 operator_key = PrivateKey.from_string(os.getenv("OPERATOR_KEY"))
 der_privkey = operator_key.to_string()
+public_key = PublicKey.from_string(os.getenv("PUBLIC_KEY"))
+der_pubkey = public_key.to_string()
 network = Network(network='testnet')
 client = Client(network)
 operator_id = AccountId.from_string(os.getenv('OPERATOR_ID'))
@@ -18,6 +20,8 @@ async def main():
     await did.add_service(
         id_=f"{did.identifier}#service-1", service_type="LinkedDomains", service_endpoint="https://example.com/vcs"
     )
+    await did.add_verification_method(
+        id_=f"{did.identifier}#key-1",controller=did.identifier,public_key_der=der_pubkey,type_="Ed25519VerificationKey2018")
 
     #For some reason this works but no the HederaDidResolver
     await asyncio.sleep(5)
