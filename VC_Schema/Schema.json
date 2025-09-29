@@ -1,0 +1,26 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/credentials/v2",
+    "https://www.w3.org/ns/credentials/examples/v2"
+  ],
+  "type": [
+    "VerifiableCredential",
+    "AgeCred"
+  ],
+  "issuer": {
+    "id": "did:example:AwsmCred",
+    "name": "AwsmCred"
+  },
+  "credentialSubject": {
+    "id": "did:example:Holder",
+    "name": "Alice Updated",
+    "birthDate": "1995-01-01"
+  },
+  "proof": {
+    "type": "DataIntegrityProof",
+    "cryptosuite": "eddsa-rdfc-2022",
+    "verificationPurpose":"Assertion",
+    "verificationMethod": "idk",
+    "proofValue": "BASE58_OR_JWS_SIGNATURE"
+  }
+}
