@@ -18,4 +18,11 @@ async def main():
     await did.add_service(
         id_=f"{did.identifier}#service-1", service_type="LinkedDomains", service_endpoint="https://example.com/vcs"
     )
+
+    #For some reason this works but no the HederaDidResolver
+    await asyncio.sleep(5)
+    did_document = await did.resolve()
+    did_document_dict = did_document.get_json_payload()
+    print(did_document_dict)
+
 asyncio.run(main())
