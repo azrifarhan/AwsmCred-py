@@ -29,11 +29,12 @@ def create_new_account(Creator_key, Creator_id, client):
         print(f"Transaction status: {receipt.status}")
 
         if receipt.status != ResponseCode.SUCCESS:
-            status_message = ResponseCode(receipt.status).name
+            status_message = ResponseCode(receipt.status).get_name
             raise Exception(f"Transaction failed with status: {status_message}")
 
         new_account_id = receipt.accountId #Have to use accountId instead of account_id as specified in Github for some reason
         if new_account_id is not None:
+            print(status_message)
             print(f"Account creation successful. New Account ID: {new_account_id}")
             print(f"New Account Private Key: {new_account_private_key.to_string()}")
             print(f"New Account Public Key: {new_account_public_key.to_string()}")
